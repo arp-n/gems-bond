@@ -1,0 +1,85 @@
+---
+title: ""
+author: "Arpan Dutta"
+date: " january 22, 2024"
+---
+
+## Bivariate Normal sample generator
+
+If we take a sample in any one of the programming language like R, the samples should be independently distributed. Can we create dependent sample from this iid sample?
+
+Let start with a problem.
+
+`step1`
+
+let, $Z_1,Z_2$ \~$\mathcal{N}(0,1)$ independently
+
+define, $X=Z_1$ and $Y$ $=$ $\rho Z_1 + \sqrt(1-\rho^2)Z_2$ where, $\rho\in(-1,1)$
+
+then we can say that,
+
+1.  $X,Y$ \~ $\mathcal{N}(0,1)$ marginally
+
+2.  $\rho(X,Y)=\rho$
+
+3.  more preciously, $X$ and $Y$ jointly follows $\mathcal{N}_2(0,0,1,1,\rho)$
+
+`step 2`
+
+Let, $X$ \~ $\mathcal{N}(0,1)$
+
+Define $Z= X\sigma+\mu$ where, $\mu\in\mathcal{R},\sigma>0$
+
+Then, $Z$ \~ $\mathcal{N}(\mu,\sigma^2)$
+
+`step 3`
+
+let, $Z_1,Z_2$ \~$\mathcal{N}(0,1)$
+
+Define $X= Z_1\sigma_1+\mu_1$ where, $\mu_1\in\mathcal{R},\sigma_1>0$
+
+Define $Y= Z_2\sigma_2+\mu_2$ where, $\mu_2\in\mathcal{R},\sigma_2>0$
+
+then we can say that,
+
+1.  $X,Y$ \~ $\mathcal{N}(0,1)$ marginally
+
+2.  $\rho(X,Y)=\rho$
+
+3.  more preciously, $X$ and $Y$ jointly follows $\mathcal{N}_2(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)$
+
+Thats it
+
+```{r,filename = 'Bivariate Normal sample generator'}
+
+
+BVN<-function(size,mu1=0,mu2=0,sd1=1,sd2=1,rho=0){
+  stopifnot(exprs = {
+    sd1>0
+    sd2>0
+    -1<=rho 
+    rho<=1} ,local = TRUE)
+  
+  z<-rnorm(n=2*size)
+  sample.mat<-matrix(z,ncol=2)
+  std.y<-apply(sample.mat,1,simplify = TRUE ,FUN = function(z){
+    y<-(rho*z[1])+(sqrt(1-rho)*z[2])
+    return(y)
+    })
+
+  x<-mu1+(sample.mat[,1]*sd1)
+  y<-mu2+(std.y*sd2)
+
+cbind(x,y)}
+
+
+
+```
+
+ploting a random sample from my function.
+
+```{r}
+sam<-BVN(size=500,rho=-0.73,mu1=0.5,mu2=1.8,sd2=sqrt(2))
+
+plot(sam,pch=20,col='lightgreen')
+```

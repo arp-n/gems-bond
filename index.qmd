@@ -1,0 +1,31 @@
+---
+title: "Arpan Dutta"
+about: 
+  template: solana
+  image: web.jpg
+  image-shape: round
+  links: 
+    - icon: linkedin
+      text: linkedin
+      href: https://www.linkedin.com/in/arpan29/
+    - icon: instagram
+      text: instagram
+      href: https://www.instagram.com/arpan_dutta20/
+    - icon: github
+      text: github
+      href: https://github.com/arp-n/ 
+    - icon: facebook
+      text: facebook  
+      href: https://www.facebook.com/profile.php?id=100054795257497
+format: html
+---
+
+## Education
+
+Studying MStat, ISI Delhi
+
+Studied BSc in Statistics from Presidency University,Kolkata
+
+## Skills
+
+`R` `Python` `Latex` `Quarto`

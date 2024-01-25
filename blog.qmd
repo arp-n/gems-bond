@@ -1,0 +1,13 @@
+---
+title: "Welcome to my blog"
+format: html
+editor: visual
+---
+
+hello! This is my blog page. I will upload some interesting things in this page.
+
+1.[Bivariate Normal Sample Generator](BVN.qmd)
+
+2.[Analysis of Real-estate dataset](real-estate%20data.qmd)
+
+\[*Authors: soumyajit, sourav and arpan*\]
